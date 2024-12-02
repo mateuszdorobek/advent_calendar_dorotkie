@@ -69,7 +69,6 @@ def render_button(day):
 def application():
     st.title("Kalendarz adwentowy dla Dorotki")
     st.write("Wesołych świąt pięknisiu!")
-    """Renders the entire grid of buttons."""
     for row in range((TOTAL_DAYS - 1) // GRID_COLUMNS + 1):
         cols = st.columns(GRID_COLUMNS)
         for col_idx in range(GRID_COLUMNS):

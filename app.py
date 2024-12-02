@@ -4,6 +4,8 @@ import os
 from datetime import datetime
 
 import streamlit as st
+from streamlit_javascript import st_javascript
+from user_agents import parse
 
 # Constants
 GRID_COLUMNS = 5
@@ -64,7 +66,9 @@ def render_button(day):
         render_popup(day)
 
 
-def render_button_grid():
+def application():
+    st.title("Kalendarz adwentowy dla Dorotki")
+    st.write("Wesołych świąt pięknisiu!")
     """Renders the entire grid of buttons."""
     for row in range((TOTAL_DAYS - 1) // GRID_COLUMNS + 1):
         cols = st.columns(GRID_COLUMNS)
@@ -90,19 +94,7 @@ def render_popup(day):
             st.video(day_data["youtube_url"])
 
 
-def main():
-    st.title("Kalendarz adwentowy dla Dorotki")
-    st.write("Wesołych świąt pięknisiu!")
-
-    # Load calendar data
-
-    # Render the button grid
-    render_button_grid()
-
-    # Render the popup if a day is selected  # render_popup(calendar_data)
-
-
-if __name__ == "__main__":
+def authenticate():
     # Check if the authentication status is stored in the session state
     if "authenticated" not in st.session_state:
         st.session_state["authenticated"] = False
@@ -119,4 +111,19 @@ if __name__ == "__main__":
             st.stop()  # Stop further execution if authentication fails
     else:
         # Proceed to the main app if authenticated
-        main()
+        application()
+
+
+def check_if_mobile():
+    # Check if the app is being accessed from a mobile device
+    ua_string = st_javascript("""window.navigator.userAgent;""")
+    user_agent = parse(ua_string)
+    return user_agent.is_mobile
+
+
+if __name__ == "__main__":
+    if check_if_mobile():
+        st.error("Ta aplikacja nie jest obsługiwana na urządzeniach mobilnych.")
+        st.stop()
+    else:
+        authenticate()

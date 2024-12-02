@@ -122,7 +122,7 @@ def check_if_mobile():
 
 if __name__ == "__main__":
     if check_if_mobile():
-        st.error("Ta aplikacja nie jest obsługiwana na urządzeniach mobilnych.")
+        st.error("Ta aplikacja nie jest obsługiwana na urządzeniach mobilnych. Uruchom ją na komputerze.")
         st.stop()
     else:
         authenticate()

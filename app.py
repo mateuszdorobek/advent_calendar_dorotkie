@@ -16,7 +16,7 @@ OUTPUT_IMAGES_DIR = "images/output_images"  # Directory containing individual im
 # Get the current day of December
 polish_timezone = pytz.timezone("Europe/Warsaw")
 current_date = datetime.now(polish_timezone)
-current_day = current_date.day if current_date.month == 12 else 0
+CURRENT_DAY = current_date.day if current_date.month == 12 else 0
 
 
 def load_calendar_data(json_file):

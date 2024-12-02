@@ -3,6 +3,7 @@ import json
 import os
 from datetime import datetime
 
+import pytz
 import streamlit as st
 from streamlit_javascript import st_javascript
 from user_agents import parse
@@ -13,7 +14,9 @@ TOTAL_DAYS = 25
 OUTPUT_IMAGES_DIR = "images/output_images"  # Directory containing individual images
 
 # Get the current day of December
-CURRENT_DAY = datetime.now().day if datetime.now().month == 12 else 0
+polish_timezone = pytz.timezone("Europe/Warsaw")
+current_date = datetime.now(polish_timezone)
+current_day = current_date.day if current_date.month == 12 else 0
 
 
 def load_calendar_data(json_file):

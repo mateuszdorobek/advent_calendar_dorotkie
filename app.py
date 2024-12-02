@@ -109,14 +109,13 @@ if __name__ == "__main__":
 
     if not st.session_state["authenticated"]:
         # Display the password input
-        password = st.text_input("Password", type="password")
+        password = st.text_input("Hasło", type="password")
 
         if password == st.secrets["password"]:
             st.session_state["authenticated"] = True
-            st.success("Authentication successful!")
             st.rerun()  # Rerun the app to update the UI and hide the password input
         elif password:
-            st.error("Wrong password")
+            st.error("Błędne hasło!")
             st.stop()  # Stop further execution if authentication fails
     else:
         # Proceed to the main app if authenticated

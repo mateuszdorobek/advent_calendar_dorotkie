@@ -1,0 +1,8 @@
+# Virtual environment
+venv/
+
+# Streamlit secrets and cache
+.streamlit
+
+# Idea
+.idea

@@ -103,4 +103,21 @@ def main():
 
 
 if __name__ == "__main__":
-    main()  # Check if the authentication status is stored in the session state  # if "authenticated" not in st.session_state:  #     st.session_state["authenticated"] = False  #  # if not st.session_state["authenticated"]:  #     # Display the password input  #     password = st.text_input("Password", type="password")  #  #     if password == st.secrets["password"]:  #         st.session_state["authenticated"] = True  #         st.success("Authentication successful!")  #         st.rerun()  # Rerun the app to update the UI and hide the password input  #     elif password:  #         st.error("Wrong password")  #         st.stop()  # Stop further execution if authentication fails  # else:  #     # Proceed to the main app if authenticated  #     main()
+    # Check if the authentication status is stored in the session state
+    if "authenticated" not in st.session_state:
+        st.session_state["authenticated"] = False
+
+    if not st.session_state["authenticated"]:
+        # Display the password input
+        password = st.text_input("Password", type="password")
+
+        if password == st.secrets["password"]:
+            st.session_state["authenticated"] = True
+            st.success("Authentication successful!")
+            st.rerun()  # Rerun the app to update the UI and hide the password input
+        elif password:
+            st.error("Wrong password")
+            st.stop()  # Stop further execution if authentication fails
+    else:
+        # Proceed to the main app if authenticated
+        main()

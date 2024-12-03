@@ -39,6 +39,10 @@ def render_button(day):
 
     # Determine if the button should be clickable
     clickable = day <= CURRENT_DAY
+    past = day < CURRENT_DAY
+
+    background_css = f"""background: url('data:image/jpeg;base64,{base64_image}') no-repeat center center;
+            background-size: cover;"""
 
     # Generate the button HTML
     button_html = f"""
@@ -48,9 +52,7 @@ def render_button(day):
             width: 100%;
             height: 100%;
             border: none;
-            background: url('data:image/jpeg;base64,{base64_image}') no-repeat center center;
-            background-size: cover;
-            color: white;
+            """ + (background_css if not past else '') + f"""background-color: #fb4242;
             font-size: 20px;
             font-weight: bold;
             cursor: {'pointer' if clickable else 'not-allowed'};
